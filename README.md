@@ -1,102 +1,86 @@
-# STM32 Electronic Clock Project
+# STM32F103C8T6 Digital Clock
 
-## Overview
+## Tổng quan
 
-This project is an electronic clock built using the STM32F103C8T6 microcontroller. It features a real-time clock (RTC) for accurate timekeeping, a user interface for setting the time and alarms, and a DFPlayer module for playing alarm sounds. The clock is designed to be user-friendly, with intuitive button controls for easy operation.
+Dự án này là đồng hồ điện tử sử dụng STM32F103C8T6, LCD I2C, module RTC DS3231, DFPlayer Mini (phát nhạc báo thức từ thẻ nhớ SD). Giao diện điều khiển chỉ với 3 nút: Light, Mode, Start/Stop.
 
-## Features
+## Chức năng chính
 
-- **Real-Time Clock (RTC)**: Keeps accurate time and date.
-- **Alarm Functionality**: Set multiple alarms with customizable times.
-- **DFPlayer Module**: Play alarm sounds from a microSD card.
-- **Volume Control**: Adjust the volume of the alarm sounds.
-- **User Interface**: Simple button controls for setting time and alarms.
-- **LCD Display**: Displays current time, date, and alarm status.
+- **Hiển thị thời gian thực**
+- **Bật/tắt đèn nền LCD**
+- **Chỉnh thời gian**
+- **Đặt báo thức (chọn nhạc báo thức từ thẻ SD)**
+- **Chỉnh âm lượng báo thức**
+- **Bấm giờ thể thao (Stopwatch)**
 
-## Components Required
+## Sơ đồ nút nhấn
 
-- STM32F103C8T6 Microcontroller
-- DS3231 RTC Module
-- DFPlayer Mini MP3 Player Module
-- MicroSD Card (for alarm sounds)
-- 16x2 LCD Display (or any compatible display)
-- Push Buttons (for user input)
-- Resistors (for button pull-down)
-- Breadboard and Jumper Wires
+| Nút        | Chức năng chính ngoài mode | Chức năng trong các mode |
+|------------|---------------------------|-------------------------|
+| Light      | Bật/tắt đèn nền LCD       | Di chuyển con trỏ/thông số, giảm giá trị, reset stopwatch, tắt báo thức |
+| Mode       | Đổi mode, giữ để vào mode | Lưu và thoát mode       |
+| Start/Stop | Tăng giá trị, bắt đầu/tạm dừng stopwatch | Tăng giá trị           |
 
-## Wiring Diagram
+## Hướng dẫn sử dụng
 
-```
-STM32F103C8T6      DS3231       DFPlayer      LCD
------------------  -----------  -----------  -------------
-  GND  ------------  GND        GND         GND
-  3.3V ------------  VCC        VCC         VCC
-  PB6  ------------  SDA        RX          RS
-  PB7  ------------  SCL        TX          E
-  PA9  ------------  -          D0          D4
-  PA10 ------------  -          D1          D5
-  PA11 ------------  -          D2          D6
-  PA12 ------------  -          D3          D7
-```
+### 1. Chế độ hiển thị thời gian (Display mode)
+- Mặc định hiển thị giờ, ngày, tháng, năm.
+- **Light:** Bật/tắt đèn nền LCD.
+- **Mode:** Nhấn giữ để chuyển mode.
 
-## Button Controls
+### 2. Chỉnh thời gian (Time adjustment mode)
+- **Vào mode:** Nhấn giữ Mode 1 giây.
+- **Light:** Di chuyển qua từng thông số (ngày, tháng, năm, giờ, phút, giây).
+- **Start/Stop:** Tăng giá trị thông số đang chọn.
+- **Mode:** Lưu và thoát.
 
-- **Button 1 (Set Time)**: 
-  - Press to enter time-setting mode.
-  - Use Button 2 to increment hours and Button 3 to increment minutes.
-  - Press Button 1 again to save the time.
+### 3. Đặt báo thức (Set alarm mode)
+- **Vào mode:** Nhấn giữ Mode 2 giây.
+- **Light:** Di chuyển qua từng thông số (giờ, phút, giây).
+- **Start/Stop:** Tăng giá trị thông số đang chọn.
+- **Mode:** Lưu và thoát.
 
-- **Button 2 (Set Alarm)**: 
-  - Press to enter alarm-setting mode.
-  - Use Button 1 to increment hours and Button 3 to increment minutes.
-  - Press Button 2 again to save the alarm time.
+### 4. Bấm giờ thể thao (Sports stopwatch mode)
+- **Vào mode:** Nhấn giữ Mode 3 giây.
+- **Start/Stop:** Bắt đầu/tạm dừng stopwatch.
+- **Light:** Reset stopwatch về 0.
+- **Mode:** Lưu và thoát.
 
-- **Button 3 (Volume Control)**: 
-  - Press to adjust the volume of the alarm sound.
-  - Each press increases the volume (up to a maximum level).
-  - Long press to decrease the volume.
+### 5. Chọn nhạc báo thức (Ringtone select mode)
+- **Vào mode:** Chọn từ menu mode.
+- **Start/Stop:** Chuyển bài nhạc tiếp theo.
+- **Light:** Chuyển bài nhạc trước đó.
+- **Mode:** Xác nhận chọn bài nhạc.
 
-- **Button 4 (Snooze)**: 
-  - Press when the alarm sounds to activate snooze mode.
-  - The alarm will pause and ring again after a preset duration.
+### 6. Chỉnh âm lượng báo thức (Volume adjust mode)
+- **Vào mode:** Chọn từ menu mode.
+- **Start/Stop:** Tăng âm lượng.
+- **Light:** Giảm âm lượng.
+- **Mode:** Xác nhận và lưu.
 
-## DFPlayer Integration
+### Khi báo thức kêu
+- Đèn nền LCD nhấp nháy mỗi 1 giây.
+- **Light:** Nhấn để tắt báo thức.
 
-The DFPlayer Mini module allows you to play MP3 files stored on a microSD card. The following features are implemented:
+## Phần cứng sử dụng
 
-- **Alarm Sound Selection**: 
-  - Users can select different MP3 files for different alarms.
-  - The file names should be in the format `001.mp3`, `002.mp3`, etc.
+- STM32F103C8T6
+- LCD 16x2 I2C
+- RTC DS3231
+- DFPlayer Mini + thẻ nhớ microSD (file nhạc: 001.mp3, 002.mp3, ...)
+- 3 nút nhấn: Light, Mode, Start/Stop
 
-- **Volume Adjustment**: 
-  - The volume can be adjusted using Button 3.
-  - The volume range is from 0 (mute) to 30 (maximum volume).
+## Hướng dẫn nạp và sử dụng
 
-## Installation
-
-1. Clone or download the project repository.
-2. Open the project in your preferred IDE (e.g., STM32CubeIDE).
-3. Connect the STM32F103C8T6 to your computer using a USB programmer.
-4. Compile and upload the code to the microcontroller.
-5. Insert the microSD card with the alarm sounds into the DFPlayer module.
-6. Power the circuit and enjoy your electronic clock!
-
-## Usage
-
-- After powering on, the clock will display the current time.
-- To set the time, press Button 1 and follow the prompts.
-- To set an alarm, press Button 2 and follow the prompts.
-- Adjust the volume using Button 3.
-- When the alarm goes off, press Button 4 to snooze.
-
-## Conclusion
-
-This STM32 electronic clock project is a fun and educational way to learn about microcontrollers, real-time clocks, and audio playback. Feel free to modify and expand upon this project to add more features or improve functionality!
+1. Nạp code cho STM32F103C8T6.
+2. Kết nối phần cứng như sơ đồ.
+3. Copy file nhạc báo thức vào thẻ nhớ microSD (đặt tên 001.mp3, 002.mp3, ...).
+4. Lắp thẻ nhớ vào DFPlayer.
+5. Cấp nguồn cho mạch.
+6. Sử dụng 3 nút để thao tác như hướng dẫn ở trên.
 
 ## License
 
-This project is open-source and available for personal and educational use. Please give credit if you use or modify the code.
+Dự án mã nguồn mở, sử dụng cho mục đích cá nhân và học tập.
 
 ---
-
-For any questions or issues, please open an issue in the repository or contact the project maintainer. Happy coding!
