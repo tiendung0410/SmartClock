@@ -27,3 +27,4 @@ clock_advanced\stm32f1xx_hal_rcc_ex.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32
 clock_advanced\stm32f1xx_hal_rcc_ex.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h
 clock_advanced\stm32f1xx_hal_rcc_ex.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h
 clock_advanced\stm32f1xx_hal_rcc_ex.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h
+clock_advanced\stm32f1xx_hal_rcc_ex.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h

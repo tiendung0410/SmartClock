@@ -28,6 +28,8 @@ clock_advanced\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_i2c.h
 clock_advanced\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h
 clock_advanced\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h
 clock_advanced\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h
+clock_advanced\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h
 clock_advanced\main.o: ../Library/RTC.h
 clock_advanced\main.o: ../Library/LiquidCrystal_I2C.h
 clock_advanced\main.o: ../Library/Button.h
+clock_advanced\main.o: ../Library/DFPLAYER.h

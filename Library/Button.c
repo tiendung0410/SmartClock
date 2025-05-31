@@ -1,84 +1,101 @@
 #include "Button.h"
-//---------------var button------------
 
+//--------------- Biến quản lý nút bấm ------------
+/**
+ * @brief Hàm callback khi nút bấm đang được nhấn (tùy chọn, có thể thay đổi trong ứng dụng).
+ * @param ButtonX Con trỏ đến cấu trúc Button_Typdef chứa thông tin nút bấm.
+ */
+__weak void btn_pressing_callback(Button_Typdef *ButtonX)
+{
+}
 
-__weak void	btn_pressing_callback(Button_Typdef *ButtonX)
-{
-}
-__weak void btn_press_short_callback(Button_Typdef *ButtonX )
+/**
+ * @brief Hàm callback khi nút bấm được nhấn ngắn (tùy chọn, có thể thay đổi trong ứng dụng).
+ * @param ButtonX Con trỏ đến cấu trỏ Button_Typdef chứa thông tin nút bấm.
+ */
+__weak void btn_press_short_callback(Button_Typdef *ButtonX)
 {
 }
 
-__weak void btn_press_timeout1s_callback(Button_Typdef *ButtonX)
+/**
+ * @brief Hàm callback khi nút bấm được thả ra (tùy chọn, có thể thay đổi trong ứng dụng).
+ * @param ButtonX Con trỏ đến cấu trúc Button_Typdef chứa thông tin nút bấm.
+ */
+__weak void btn_release_callback(Button_Typdef *ButtonX)
 {
 }
-__weak void btn_press_timeout2s_callback(Button_Typdef *ButtonX)
+
+/**
+ * @brief Hàm callback khi thời gian nhấn nút vượt quá ngưỡng (timeout).
+ * @param ButtonX Con trỏ đến cấu trúc Button_Typdef chứa thông tin nút bấm.
+ */
+__weak void btn_press_timeout_callback(Button_Typdef *ButtonX)
 {
 }
-__weak void btn_press_timeout3s_callback(Button_Typdef *ButtonX)
-{
-}
-uint8_t allow_1s_run=1;
-uint8_t allow_2s_run=1;
+
+/**
+ * @brief Hàm xử lý tín hiệu nút bấm. Quản lý các trạng thái nhấn, thả, thời gian nhấn.
+ * 
+ * Hàm này thực hiện lọc tín hiệu nút bấm, phát hiện các sự kiện như nhấn ngắn, nhấn lâu hoặc thả nút.
+ * Nó cũng xử lý các tình huống như debounce (giảm nhiễu tín hiệu).
+ * 
+ * @param ButtonX Con trỏ đến cấu trúc Button_Typdef chứa thông tin nút bấm.
+ */
 void button_handle(Button_Typdef *ButtonX)
 {
-	//------------------ Loc nhieu ------------------------
-	uint8_t sta = HAL_GPIO_ReadPin(ButtonX->GPIOx, ButtonX->GPIO_Pin);
-	if(sta != ButtonX->btn_filter)
-	{
-		ButtonX->btn_filter = sta;
-		ButtonX->is_debouncing = 1;
-		ButtonX->time_deboune = HAL_GetTick();
-	}
-	//------------------ Tin hieu da xac lap------------------------
-	if(ButtonX->is_debouncing && (HAL_GetTick() - ButtonX->time_deboune >= 15))
-	{
-		ButtonX->btn_current = ButtonX->btn_filter;
-		ButtonX->is_debouncing =0;
-	}
-	//---------------------Xu li nhan nha------------------------
-	if(ButtonX->btn_current != ButtonX->btn_last)
-	{
-		if(ButtonX->btn_current == 0)//nhan xuong
-		{
-			ButtonX->is_press_timeout = 1;
-			btn_pressing_callback(ButtonX);
-			ButtonX->time_start_press = HAL_GetTick();
+    //------------------ Lọc nhiễu ------------------------
+    uint8_t sta = HAL_GPIO_ReadPin(ButtonX->GPIOx, ButtonX->GPIO_Pin); // Đọc tín hiệu nút bấm
+    if (sta != ButtonX->btn_filter) // Nếu tín hiệu thay đổi (lọc nhiễu)
+    {
+        ButtonX->btn_filter = sta;
+        ButtonX->is_debouncing = 1; // Bắt đầu quá trình debounce
+        ButtonX->time_deboune = HAL_GetTick(); // Ghi nhận thời gian bắt đầu debounce
+    }
 
-		}
-		else //nha nut
-		{
-			if(HAL_GetTick() - ButtonX->time_start_press <= 1000)
-			{
-				btn_press_short_callback(ButtonX);
-			}
-			ButtonX->is_press_timeout = 0;
-			allow_1s_run=1;
-			allow_2s_run=1;
-		}
-		ButtonX->btn_last = ButtonX->btn_current;
-	}
-	//-------------Xu li nhan giu----------------
-	if(ButtonX->is_press_timeout && (HAL_GetTick() - ButtonX->time_start_press >= 4000))
-	{
-		btn_press_timeout3s_callback(ButtonX);
-		ButtonX->is_press_timeout =0;
-	}
-	if(allow_2s_run && (ButtonX->is_press_timeout) && (HAL_GetTick() - ButtonX->time_start_press < 4000) && (HAL_GetTick() - ButtonX->time_start_press >= 2500))
-	{
-		btn_press_timeout2s_callback(ButtonX);
-		allow_2s_run=0;
-	}
-	if(allow_1s_run && (ButtonX->is_press_timeout) && (HAL_GetTick() - ButtonX->time_start_press < 2500) && (HAL_GetTick() - ButtonX->time_start_press >= 1000))
-	{
-		btn_press_timeout1s_callback(ButtonX);
-		allow_1s_run=0;
-	}
-	
-	
+    //------------------ Tín hiệu đã xác lập ------------------------
+    if (ButtonX->is_debouncing && (HAL_GetTick() - ButtonX->time_deboune >= 15)) // Kiểm tra thời gian debounce
+    {
+        ButtonX->btn_current = ButtonX->btn_filter; // Lưu giá trị tín hiệu đã lọc
+        ButtonX->is_debouncing = 0; // Kết thúc debounce
+    }
+
+    //--------------------- Xử lý nhấn nút ------------------------
+    if (ButtonX->btn_current != ButtonX->btn_last) // Kiểm tra nếu tín hiệu nút thay đổi
+    {
+        if (ButtonX->btn_current == 0) // Nếu nút được nhấn xuống (chân tín hiệu = 0)
+        {
+            ButtonX->is_press_timeout = 1; // Đặt cờ timeout nhấn nút
+            btn_pressing_callback(ButtonX); // Gọi callback khi nút đang nhấn
+            ButtonX->time_start_press = HAL_GetTick(); // Ghi nhận thời gian bắt đầu nhấn nút
+        }
+        else // Nếu nút được thả ra
+        {
+            if (HAL_GetTick() - ButtonX->time_start_press <= 1000) // Nếu thời gian nhấn nút nhỏ hơn 1 giây
+            {
+                btn_press_short_callback(ButtonX); // Gọi callback khi nhấn ngắn
+            }
+            btn_release_callback(ButtonX); // Gọi callback khi nút được thả ra
+            ButtonX->is_press_timeout = 0; // Đặt lại cờ timeout
+        }
+        ButtonX->btn_last = ButtonX->btn_current; // Cập nhật trạng thái nút cuối cùng
+    }
+
+    //------------- Xử lý nhấn giữ nút ----------------
+    if (ButtonX->is_press_timeout && (HAL_GetTick() - ButtonX->time_start_press >= 3000)) // Nếu nhấn giữ lâu hơn 3 giây
+    {
+        btn_press_timeout_callback(ButtonX); // Gọi callback khi nhấn giữ quá lâu
+        ButtonX->is_press_timeout = 0; // Đặt lại cờ timeout
+    }
 }
-void button_init(Button_Typdef *ButtonX,GPIO_TypeDef *GPIOx, uint16_t GPIO_Pin)
+
+/**
+ * @brief Hàm khởi tạo cấu trúc Button và các thông số GPIO.
+ * @param ButtonX Con trỏ đến cấu trúc Button_Typdef cần khởi tạo.
+ * @param GPIOx Con trỏ đến cổng GPIO liên quan đến nút bấm.
+ * @param GPIO_Pin Chân GPIO cụ thể của nút bấm.
+ */
+void button_init(Button_Typdef *ButtonX, GPIO_TypeDef *GPIOx, uint16_t GPIO_Pin)
 {
-	ButtonX->GPIOx = GPIOx;
-	ButtonX->GPIO_Pin = GPIO_Pin;
+    ButtonX->GPIOx = GPIOx; // Cập nhật cổng GPIO
+    ButtonX->GPIO_Pin = GPIO_Pin; // Cập nhật chân GPIO
 }

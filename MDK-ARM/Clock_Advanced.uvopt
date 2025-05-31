@@ -166,7 +166,47 @@
         <Ww>
           <count>3</count>
           <WinNumber>1</WinNumber>
-          <ItemText>alarm_on_or_off</ItemText>
+          <ItemText>alarm_on_or_off,0x0A</ItemText>
+        </Ww>
+        <Ww>
+          <count>4</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>hrtc1,0x0A</ItemText>
+        </Ww>
+        <Ww>
+          <count>5</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>alarmTime,0x0A</ItemText>
+        </Ww>
+        <Ww>
+          <count>6</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>alarm_state</ItemText>
+        </Ww>
+        <Ww>
+          <count>7</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>hrtc1</ItemText>
+        </Ww>
+        <Ww>
+          <count>8</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>hrtc1,0x0A</ItemText>
+        </Ww>
+        <Ww>
+          <count>9</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>alarm_state</ItemText>
+        </Ww>
+        <Ww>
+          <count>10</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>adjusting_state</ItemText>
+        </Ww>
+        <Ww>
+          <count>11</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>alarmTime,0x0A</ItemText>
         </Ww>
       </WatchWindow1>
       <Tracepoint>
@@ -205,7 +245,7 @@
 
   <Group>
     <GroupName>Application/MDK-ARM</GroupName>
-    <tvExp>0</tvExp>
+    <tvExp>1</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>
@@ -217,8 +257,8 @@
       <Focus>0</Focus>
       <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>1</TopLine>
-      <CurrentLine>1</CurrentLine>
+      <TopLine>127</TopLine>
+      <CurrentLine>132</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>startup_stm32f103xb.s</PathWithFileName>
       <FilenameWithoutPath>startup_stm32f103xb.s</FilenameWithoutPath>
@@ -239,10 +279,10 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>17</ColumnNumber>
+      <ColumnNumber>29</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>1</TopLine>
-      <CurrentLine>613</CurrentLine>
+      <TopLine>161</TopLine>
+      <CurrentLine>173</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>../Core/Src/main.c</PathWithFileName>
       <FilenameWithoutPath>main.c</FilenameWithoutPath>
@@ -255,10 +295,10 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>20</ColumnNumber>
+      <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>175</TopLine>
-      <CurrentLine>209</CurrentLine>
+      <TopLine>0</TopLine>
+      <CurrentLine>0</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>../Core/Src/stm32f1xx_it.c</PathWithFileName>
       <FilenameWithoutPath>stm32f1xx_it.c</FilenameWithoutPath>
@@ -285,7 +325,7 @@
 
   <Group>
     <GroupName>Drivers/STM32F1xx_HAL_Driver</GroupName>
-    <tvExp>0</tvExp>
+    <tvExp>1</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>
@@ -313,8 +353,8 @@
       <Focus>0</Focus>
       <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>7323</TopLine>
-      <CurrentLine>7324</CurrentLine>
+      <TopLine>7293</TopLine>
+      <CurrentLine>7301</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_i2c.c</PathWithFileName>
       <FilenameWithoutPath>stm32f1xx_hal_i2c.c</FilenameWithoutPath>
@@ -329,8 +369,8 @@
       <Focus>0</Focus>
       <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>294</TopLine>
-      <CurrentLine>295</CurrentLine>
+      <TopLine>376</TopLine>
+      <CurrentLine>382</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.c</PathWithFileName>
       <FilenameWithoutPath>stm32f1xx_hal.c</FilenameWithoutPath>
@@ -377,8 +417,8 @@
       <Focus>0</Focus>
       <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>430</TopLine>
-      <CurrentLine>440</CurrentLine>
+      <TopLine>0</TopLine>
+      <CurrentLine>0</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.c</PathWithFileName>
       <FilenameWithoutPath>stm32f1xx_hal_gpio.c</FilenameWithoutPath>
@@ -489,8 +529,8 @@
       <Focus>0</Focus>
       <ColumnNumber>6</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>2040</TopLine>
-      <CurrentLine>2082</CurrentLine>
+      <TopLine>0</TopLine>
+      <CurrentLine>0</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.c</PathWithFileName>
       <FilenameWithoutPath>stm32f1xx_hal_tim.c</FilenameWithoutPath>
@@ -513,17 +553,33 @@
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
+    <File>
+      <GroupNumber>3</GroupNumber>
+      <FileNumber>19</FileNumber>
+      <FileType>1</FileType>
+      <tvExp>0</tvExp>
+      <Focus>0</Focus>
+      <ColumnNumber>0</ColumnNumber>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <TopLine>1133</TopLine>
+      <CurrentLine>1138</CurrentLine>
+      <bDave2>0</bDave2>
+      <PathWithFileName>../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_uart.c</PathWithFileName>
+      <FilenameWithoutPath>stm32f1xx_hal_uart.c</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
   </Group>
 
   <Group>
     <GroupName>Drivers/CMSIS</GroupName>
-    <tvExp>0</tvExp>
+    <tvExp>1</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>
     <File>
       <GroupNumber>4</GroupNumber>
-      <FileNumber>19</FileNumber>
+      <FileNumber>20</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
@@ -547,33 +603,17 @@
     <RteFlg>0</RteFlg>
     <File>
       <GroupNumber>5</GroupNumber>
-      <FileNumber>20</FileNumber>
-      <FileType>1</FileType>
-      <tvExp>0</tvExp>
-      <Focus>0</Focus>
-      <ColumnNumber>13</ColumnNumber>
-      <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>1</TopLine>
-      <CurrentLine>1</CurrentLine>
-      <bDave2>0</bDave2>
-      <PathWithFileName>..\Library\RTC.c</PathWithFileName>
-      <FilenameWithoutPath>RTC.c</FilenameWithoutPath>
-      <RteFlg>0</RteFlg>
-      <bShared>0</bShared>
-    </File>
-    <File>
-      <GroupNumber>5</GroupNumber>
       <FileNumber>21</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>21</ColumnNumber>
+      <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>55</TopLine>
-      <CurrentLine>56</CurrentLine>
+      <TopLine>11</TopLine>
+      <CurrentLine>42</CurrentLine>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\Library\LiquidCrystal_I2C.c</PathWithFileName>
-      <FilenameWithoutPath>LiquidCrystal_I2C.c</FilenameWithoutPath>
+      <PathWithFileName>..\Library\RTC.c</PathWithFileName>
+      <FilenameWithoutPath>RTC.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -585,11 +625,43 @@
       <Focus>0</Focus>
       <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>33</TopLine>
-      <CurrentLine>34</CurrentLine>
+      <TopLine>172</TopLine>
+      <CurrentLine>176</CurrentLine>
+      <bDave2>0</bDave2>
+      <PathWithFileName>..\Library\LiquidCrystal_I2C.c</PathWithFileName>
+      <FilenameWithoutPath>LiquidCrystal_I2C.c</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+    <File>
+      <GroupNumber>5</GroupNumber>
+      <FileNumber>23</FileNumber>
+      <FileType>1</FileType>
+      <tvExp>0</tvExp>
+      <Focus>0</Focus>
+      <ColumnNumber>26</ColumnNumber>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <TopLine>63</TopLine>
+      <CurrentLine>75</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>..\Library\Button.c</PathWithFileName>
       <FilenameWithoutPath>Button.c</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+    <File>
+      <GroupNumber>5</GroupNumber>
+      <FileNumber>24</FileNumber>
+      <FileType>1</FileType>
+      <tvExp>0</tvExp>
+      <Focus>0</Focus>
+      <ColumnNumber>21</ColumnNumber>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <TopLine>34</TopLine>
+      <CurrentLine>35</CurrentLine>
+      <bDave2>0</bDave2>
+      <PathWithFileName>..\Library\DFPLAYER.c</PathWithFileName>
+      <FilenameWithoutPath>DFPLAYER.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
